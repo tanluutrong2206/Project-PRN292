@@ -6,6 +6,10 @@ namespace Project_PRN292_MVC.Models
 {
     public partial class Family_MartContext : DbContext
     {
+        public Family_MartContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public virtual DbSet<About> About { get; set; }
         public virtual DbSet<Blogs> Blogs { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
@@ -20,14 +24,14 @@ namespace Project_PRN292_MVC.Models
         public virtual DbSet<Reviews> Reviews { get; set; }
         public virtual DbSet<ShopInformation> ShopInformation { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=desktop-gsc4244\sqlexpress;Database=Family Mart;Trusted_Connection=True;");
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer(@"Server=desktop-gsc4244\sqlexpress;Database=Family Mart;Trusted_Connection=True;");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

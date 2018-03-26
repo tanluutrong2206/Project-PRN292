@@ -1,17 +1,94 @@
-﻿@{
-    ViewData["Title"] = "Contact";
+﻿@*@model Tuple<IEnumerable<Project_PRN292_MVC.Models.ShopInformation>, IEnumerable<Project_PRN292_MVC.Models.OpeningHours>>*@
+@model ContactPage
+
+@{
+    ViewData["Title"] = "Contact Us - My Page"; //change My Page to name of website
 }
 <h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+@*<h3>@ViewData["Message"]</h3>*@
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div>
+    <div>
+        <h2>SHOP INFORMATION</h2>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+        <div>
+            <ul>
+                <li>
+                    <h4>ADDRESS</h4>
+                    <SPAN>@Html.DisplayFor(modelItem => Model.ShopInformation.ElementAt(0).Address)</SPAN>
+                </li>
+                <li>
+                    <h4>EMAIL</h4>
+                    <dspan>@Html.DisplayFor(modelItem => Model.ShopInformation.ElementAt(0).Email)</dspan>
+                </li>
+                <li>
+                    <h4>PHONE</h4>
+                    <span>@Html.DisplayFor(modelItem => Model.ShopInformation.ElementAt(0).Phone)</span>
+                </li>
+                <li>
+                    <h4>FAX</h4>
+                    <span>@Html.DisplayFor(modelItem => Model.ShopInformation.ElementAt(0).Fax)</span>
+                </li>
+            </ul>
+        </div>
+
+        <h2>CUSTOMER SERVICE HOURS</h2>
+        <div>
+            <ul>
+                <li>
+                    <h4>MON-FRI</h4>
+                    <span>@Html.DisplayFor(modelItem => Model.OpeningHours.ElementAt(0).WeekDays)</span>
+                </li>
+                <li>
+                    <h4>SAT</h4>
+                    <span>@Html.DisplayFor(modelItem => Model.OpeningHours.ElementAt(0).Saturday)</span>
+                </li>
+                <li>
+                    <h4>SUN</h4>
+                    <span>@Html.DisplayFor(modelItem => Model.OpeningHours.ElementAt(0).Sunday)</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <h2>CONTACT INFORMATION</h2>
+
+        <h3>@ViewData["Message"]</h3>
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.Name" class="control-label"></label>
+                        <input asp-for="ContactInformation.Name" class="form-control" />
+                        <span asp-validation-for="ContactInformation.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.Email" class="control-label"></label>
+                        <input asp-for="ContactInformation.Email" class="form-control" />
+                        <span asp-validation-for="ContactInformation.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.Subject" class="control-label"></label>
+                        <input asp-for="ContactInformation.Subject" class="form-control" />
+                        <span asp-validation-for="ContactInformation.Subject" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ContactInformation.Message" class="control-label"></label>
+                        <input asp-for="ContactInformation.Message" class="form-control" />
+                        <span asp-validation-for="ContactInformation.Message" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
