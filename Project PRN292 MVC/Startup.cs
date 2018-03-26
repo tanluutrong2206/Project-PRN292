@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Project_PRN292_MVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Project_PRN292_MVC
 {
@@ -22,6 +24,8 @@ namespace Project_PRN292_MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            var connection = @"Server=desktop-gsc4244\sqlexpress;Database=Family Mart;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<Family_MartContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
