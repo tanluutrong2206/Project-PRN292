@@ -53,13 +53,20 @@ namespace Project_PRN292_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContactInformationId,Name,Email,Subject,Message")] ContactInformations contactInformations)
+        public async Task<IActionResult> Create
+            ([Bind("ContactInformationId," +
+            "Name," +
+            "Email," +
+            "Subject," +
+            "Message")] ContactPage contactInformations)
         {
             if (ModelState.IsValid)
             {
+                ViewData["Message"] = "Successfully";
                 _context.Add(contactInformations);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("../Home/Contact");
             }
             return View(contactInformations);
         }

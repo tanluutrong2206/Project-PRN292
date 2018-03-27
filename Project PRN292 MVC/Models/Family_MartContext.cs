@@ -95,9 +95,7 @@ namespace Project_PRN292_MVC.Models
             {
                 entity.HasKey(e => e.ContactInformationId);
 
-                entity.Property(e => e.ContactInformationId)
-                    .HasColumnName("ContactInformationID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.ContactInformationId).HasColumnName("ContactInformationID");
 
                 entity.Property(e => e.Email).HasColumnType("nchar(50)");
 

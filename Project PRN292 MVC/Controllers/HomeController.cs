@@ -25,19 +25,15 @@ namespace Project_PRN292_MVC.Controllers
 
         public async Task<IActionResult> About()
         {
-            ViewData["Message"] = "Your application description page.";
+            AboutPage aboutPage = new AboutPage();
+            aboutPage.Abouts = await _context.About.SingleOrDefaultAsync();
+            aboutPage.Founders = await _context.Founders.ToListAsync();
 
-
-            return View();
+            return View(aboutPage);
         }
 
         public async Task<IActionResult> Contact()
         {
-            ViewData["Message"] = "";
-
-            //var tuple = new Tuple<IEnumerable<ShopInformation>, 
-            //IEnumerable <OpeningHours>>(await _context.ShopInformation.ToListAsync(), 
-            //await _context.OpeningHours.ToListAsync());
             ContactPage contactPage = new ContactPage();
             contactPage.OpeningHours = await _context.OpeningHours.ToListAsync();
             contactPage.ShopInformation = await _context.ShopInformation.ToListAsync();
@@ -55,16 +51,17 @@ namespace Project_PRN292_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Email,Subject,Message")] ContactInformations contactInformations)
+        public async Task<IActionResult> Index([Bind("ContactInformationId,Name,Email,Subject,Message")] ContactInformations contactInformations)
         {
             if (ModelState.IsValid)
             {
-                ViewData["Message"] = "Add successfully contact information";
+                ViewData["Message"] = "Successfully";
                 _context.Add(contactInformations);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "ContactInformationsController", contactInformations);
             }
-            return View("Views/Home/Contact.cshtml");
+            return View(contactInformations);
         }
     }
 }
