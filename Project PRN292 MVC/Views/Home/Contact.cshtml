@@ -57,27 +57,27 @@
 
         <div class="row">
             <div class="col-md-4">
-                <form asp-action="Create">
+                <form asp-action="Create" asp-controller="ContactInformations">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
                         <label asp-for="ContactInformation.Name" class="control-label"></label>
-                        <input asp-for="ContactInformation.Name" class="form-control" />
+                        <input asp-for="ContactInformation.Name" class="form-control" name="Name"/>
                         <span asp-validation-for="ContactInformation.Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ContactInformation.Email" class="control-label"></label>
-                        <input asp-for="ContactInformation.Email" class="form-control" />
+                        <input asp-for="ContactInformation.Email" class="form-control" name="Email"/>
                         <span asp-validation-for="ContactInformation.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ContactInformation.Subject" class="control-label"></label>
-                        <input asp-for="ContactInformation.Subject" class="form-control" />
+                        <input asp-for="ContactInformation.Subject" class="form-control" name="Subject"/>
                         <span asp-validation-for="ContactInformation.Subject" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ContactInformation.Message" class="control-label"></label>
-                        <input asp-for="ContactInformation.Message" class="form-control" />
+                        <input asp-for="ContactInformation.Message" class="form-control" name="Message"/>
                         <span asp-validation-for="ContactInformation.Message" class="text-danger"></span>
                     </div>
                     <div class="form-group">
