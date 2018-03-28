@@ -23,7 +23,9 @@ namespace Project_PRN292_MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+                .AddSessionStateTempDataProvider();
+            services.AddSession();
             var connection = @"Server=desktop-gsc4244\sqlexpress;Database=Family Mart;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<Family_MartContext>(options => options.UseSqlServer(connection));
         }
@@ -42,7 +44,7 @@ namespace Project_PRN292_MVC
             }
 
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
