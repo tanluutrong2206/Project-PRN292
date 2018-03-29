@@ -10,7 +10,14 @@ namespace Project_PRN292_MVC.Models
         public string Content { get; set; }
         public DateTime? DateCreated { get; set; }
         public int AuthorId { get; set; }
-        public string ImageName { get; set; }
+        public string ImageName
+        {
+            get { return ImageName; }
+            set
+            {
+                ImageName = $"images/{value}";
+            }
+        }
 
         public Customers Author { get; set; }
     }

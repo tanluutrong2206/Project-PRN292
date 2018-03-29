@@ -18,7 +18,15 @@ namespace Project_PRN292_MVC.Models
         public int UnitInStock { get; set; }
         public string Description { get; set; }
         public string DateCreated { get; set; }
-        public string ImageName { get; set; }
+        public string ImageName
+        {
+            get { return ImageName; }
+            set
+            {
+                ImageName = $"images/{value}";
+            }
+        }
+
 
         public ICollection<ProductCategoryConnection> ProductCategoryConnection { get; set; }
         public ICollection<Reviews> Reviews { get; set; }
